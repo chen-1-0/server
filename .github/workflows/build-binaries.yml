@@ -1,6 +1,7 @@
 name: Build binaries for UnblockNeteaseMusic
 
 on:
+    workflow_dispatch:
     push:
         branches:
             - 'enhanced'
@@ -70,11 +71,3 @@ jobs:
                   path: |
                       ./dist/*
 
-            - name: Publishing to GitHub Releases
-              uses: svenstaro/upload-release-action@2.5.0
-              if: github.event_name == 'release'
-              with:
-                  repo_token: ${{ github.token }}
-                  file: dist/*
-                  tag: ${{ github.ref }}
-                  file_glob: true
